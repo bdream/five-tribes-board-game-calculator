@@ -1,46 +1,47 @@
 <script src="https://unpkg.com/vue@3"></script>
+<script src="https://kit.fontawesome.com/edcec8760f.js" crossorigin="anonymous"></script>
 
 <div id="app">
     <h1>
         {{ message }}
     </h1>
     <div>
-        <h3>Gold Amount</h3>
+        <h3><i class="fas fa-coins"></i> Gold Amount</h3>
         <input type="number" v-model="goldCount" @input="scoreTotal">
         {{ goldCount }}
     </div>
     <div>
-        <h3>VIZIERS - Yellow Meeples Count</h3>
+        <h3><i class="fa-solid fa-person-military-pointing"></i>VIZIERS - Yellow Meeples Count</h3>
         <input type="number" v-model="viziersCount" @input="scoreTotal">
         {{ viziersCount }}
     </div>
     <div>
-        <h3>ELDERS - White Meeples Count</h3>
+        <h3><i class="fa-solid fa-hat-wizard"></i> ELDERS - White Meeples Count</h3>
         <input type="number" v-model="eldersCount" @input="scoreTotal">
         {{ eldersCount * 2 }}
     </div>
     <div>
-        <h3>Djinnies Score</h3>
+        <h3><i class="fas fa-oil-can"></i> Djinnies Score</h3>
         <input type="number" v-model="djinniesScore" @input="scoreTotal">
         {{ djinniesScore }}
     </div>
     <div>
-        <h3>Palm Trees Count</h3>
+        <h3><i class="fa-solid fa-tree"></i> Palm Trees Count</h3>
         <input type="number" v-model="palmTreesCount" @input="scoreTotal">
         {{ palmTreesCount * 3 }}
     </div>
     <div>
-        <h3>Palaces Count</h3>
+        <h3><i class="fa-brands fa-fort-awesome"></i> Palaces Count</h3>
         <input type="number" v-model="palacesCount" @input="scoreTotal">
         {{ palacesCount * 5 }}
     </div>
     <div>
-        <h3>Camels Score</h3>
+        <h3><i class="fa-solid fa-horse"></i> Camels Score</h3>
         <input type="number" v-model="camelsScore" @input="scoreTotal">
         {{ camelsScore }}
     </div>
     <div>
-        <h3>Resource Cards Score</h3>
+        <h3><i class="fa-solid fa-store"></i> Resource Cards Score</h3>
         <input type="number" v-model="resourceCardsScore" @input="scoreTotal">
         {{ resourceCardsScore }}
     </div>
