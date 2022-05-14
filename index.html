@@ -4,6 +4,50 @@
     <h1>
         {{ message }}
     </h1>
+    <div>
+        <h3>Gold Amount</h3>
+        <input type="number" v-model="goldCount" @input="scoreTotal">
+        {{ goldCount }}
+    </div>
+    <div>
+        <h3>VIZIERS - Yellow Meeples Count</h3>
+        <input type="number" v-model="viziersCount" @input="scoreTotal">
+        {{ viziersCount }}
+    </div>
+    <div>
+        <h3>ELDERS - White Meeples Count</h3>
+        <input type="number" v-model="eldersCount" @input="scoreTotal">
+        {{ eldersCount * 2 }}
+    </div>
+    <div>
+        <h3>Djinnies Score</h3>
+        <input type="number" v-model="djinniesScore" @input="scoreTotal">
+        {{ djinniesScore }}
+    </div>
+    <div>
+        <h3>Palm Trees Count</h3>
+        <input type="number" v-model="palmTreesCount" @input="scoreTotal">
+        {{ palmTreesCount * 3 }}
+    </div>
+    <div>
+        <h3>Palaces Count</h3>
+        <input type="number" v-model="palacesCount" @input="scoreTotal">
+        {{ palacesCount * 5 }}
+    </div>
+    <div>
+        <h3>Camels Score</h3>
+        <input type="number" v-model="camelsScore" @input="scoreTotal">
+        {{ camelsScore }}
+    </div>
+    <div>
+        <h3>Resource Cards Score</h3>
+        <input type="number" v-model="resourceCardsScore" @input="scoreTotal">
+        {{ resourceCardsScore }}
+    </div>
+    <div>
+        <h2>Total Score:</h2>
+        <h2>{{ totalScore }}</h2>
+    </div>
 </div>
 
 <script>
@@ -12,7 +56,28 @@
     createApp({
         data() {
             return {
-                message: 'Five Tribes Board Game Calculator'
+                message: 'Five Tribes Board Game Calculator',
+                goldCount: 0,
+                viziersCount: 0,
+                eldersCount: 0,
+                djinniesScore: 0,
+                palmTreesCount: 0,
+                palacesCount: 0,
+                camelsScore: 0,
+                resourceCardsScore: 0,
+                totalScore: 0
+            }
+        },
+        methods: {
+            scoreTotal() {
+                this.totalScore = this.goldCount
+                    + this.viziersCount
+                    + this.eldersCount * 2
+                    + this.djinniesScore
+                    + this.palmTreesCount * 3
+                    + this.palacesCount * 5
+                    + this.camelsScore
+                    + this.resourceCardsScore;
             }
         }
     }).mount('#app')
