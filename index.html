@@ -7,9 +7,8 @@
 </head>
 <body>
 <div id="app">
-    <h1>
-        {{ message }}
-    </h1>
+    <h4 :class="$tt('headline4')">Five Tribes: The Djinns Of Naqala</h4>
+    <h6 :class="$tt('headline6')">Board Game Score Calculator</h6>
     <div>
         <ui-textfield
                 input-type="number"
@@ -138,10 +137,7 @@
             Enter resource cards score
         </ui-textfield-helper>
     </div>
-    <div>
-        <h2>Total Score:</h2>
-        <h2>{{ totalScore }}</h2>
-    </div>
+    <h5 :class="$tt('headline5')">Total Score: {{ totalScore }}</h5>
 </div>
 <script src="https://unpkg.com/vue@3"></script>
 <script src="https://kit.fontawesome.com/edcec8760f.js" crossorigin="anonymous"></script>

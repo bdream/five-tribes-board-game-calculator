@@ -3,7 +3,6 @@ const { createApp } = Vue
 const app = createApp({
     data() {
         return {
-            message: 'Five Tribes Board Game Calculator',
             goldCount: 0,
             viziersCount: 0,
             eldersCount: 0,
