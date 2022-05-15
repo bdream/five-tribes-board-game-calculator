@@ -1,60 +1,156 @@
-<script src="https://unpkg.com/vue@3"></script>
-<script src="https://kit.fontawesome.com/edcec8760f.js" crossorigin="anonymous"></script>
-
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello BalmUI</title>
+    <link rel="stylesheet" href="https://unpkg.com/balm-ui/dist/balm-ui.css" />
+</head>
+<body>
 <div id="app">
     <h1>
         {{ message }}
     </h1>
     <div>
-        <h3><i class="fas fa-coins"></i> Gold Amount</h3>
-        <input type="number" v-model="goldCount" @input="scoreTotal">
-        ({{ goldCount }})
+        <ui-textfield
+                input-type="number"
+                v-model="goldCount"
+                helper-text-id="gold-count-helper-text"
+                @input="scoreTotal"
+        >
+            <i class="fas fa-coins"></i> Gold Score ({{ goldCount }})
+        </ui-textfield>
+        <ui-textfield-helper
+                id="gold-count-helper-text"
+                :visible="true"
+        >
+            Enter the amount of gold
+        </ui-textfield-helper>
     </div>
     <div>
-        <h3><i class="fa-solid fa-person-military-pointing"></i>VIZIERS - Yellow Meeples Count</h3>
-        <input type="number" v-model="viziersCount" @input="scoreTotal">
-        ({{ viziersCount }})
+        <ui-textfield
+                input-type="number"
+                v-model="viziersCount"
+                helper-text-id="viziers-count-helper-text"
+                @input="scoreTotal"
+        >
+            <i class="fa-solid fa-person-military-pointing"></i> Viziers Score ({{ viziersCount }})
+        </ui-textfield>
+        <ui-textfield-helper
+                id="viziers-count-helper-text"
+                :visible="true"
+        >
+            Enter the number of yellow meeples
+        </ui-textfield-helper>
     </div>
     <div>
-        <h3><i class="fa-solid fa-hat-wizard"></i> ELDERS - White Meeples Count</h3>
-        <input type="number" v-model="eldersCount" @input="scoreTotal">
-        ({{ eldersCount * 2 }})
+        <ui-textfield
+                input-type="number"
+                v-model="eldersCount"
+                helper-text-id="elders-count-helper-text"
+                @input="scoreTotal"
+        >
+            <i class="fa-solid fa-hat-wizard"></i> Elders Score ({{ eldersCount * 2 }})
+        </ui-textfield>
+        <ui-textfield-helper
+                id="elders-count-helper-text"
+                :visible="true"
+        >
+            Enter the number of white meeples
+        </ui-textfield-helper>
     </div>
     <div>
-        <h3><i class="fas fa-oil-can"></i> Djinnies Score</h3>
-        <input type="number" v-model="djinniesScore" @input="scoreTotal">
-        ({{ djinniesScore }})
+        <ui-textfield
+                input-type="number"
+                v-model="djinniesScore"
+                helper-text-id="djinns-count-helper-text"
+                @input="scoreTotal"
+        >
+            <i class="fas fa-oil-can"></i> Djinns Score ({{ djinniesScore }})
+        </ui-textfield>
+        <ui-textfield-helper
+                id="djinns-count-helper-text"
+                :visible="true"
+        >
+            Enter Djinns Points
+        </ui-textfield-helper>
     </div>
     <div>
-        <h3><i class="fa-solid fa-tree"></i> Palm Trees Count</h3>
-        <input type="number" v-model="palmTreesCount" @input="scoreTotal">
-        ({{ palmTreesCount * 3 }})
+        <ui-textfield
+                input-type="number"
+                v-model="palmTreesCount"
+                helper-text-id="palm-trees-count-helper-text"
+                @input="scoreTotal"
+        >
+            <i class="fa-solid fa-tree"></i> Palm Trees Score ({{ palmTreesCount * 3 }})
+        </ui-textfield>
+        <ui-textfield-helper
+                id="palm-trees-count-helper-text"
+                :visible="true"
+        >
+            Enter the number of palm trees
+        </ui-textfield-helper>
     </div>
     <div>
-        <h3><i class="fa-brands fa-fort-awesome"></i> Palaces Count</h3>
-        <input type="number" v-model="palacesCount" @input="scoreTotal">
-        ({{ palacesCount * 5 }})
+        <ui-textfield
+                input-type="number"
+                v-model="palacesCount"
+                helper-text-id="palaces-count-helper-text"
+                @input="scoreTotal"
+        >
+            <i class="fa-brands fa-fort-awesome"></i> Palaces Score ({{ palacesCount * 5 }})
+        </ui-textfield>
+        <ui-textfield-helper
+                id="palaces-count-helper-text"
+                :visible="true"
+        >
+            Enter the number of palaces
+        </ui-textfield-helper>
     </div>
     <div>
-        <h3><i class="fa-solid fa-horse"></i> Camels Score</h3>
-        <input type="number" v-model="camelsScore" @input="scoreTotal">
-        ({{ camelsScore }})
+        <ui-textfield
+                input-type="number"
+                v-model="camelsScore"
+                helper-text-id="camels-count-helper-text"
+                @input="scoreTotal"
+        >
+            <i class="fa-solid fa-horse"></i> Camels Score ({{ camelsScore }})
+        </ui-textfield>
+        <ui-textfield-helper
+                id="camels-count-helper-text"
+                :visible="true"
+        >
+            Enter camels score
+        </ui-textfield-helper>
     </div>
     <div>
-        <h3><i class="fa-solid fa-store"></i> Resource Cards Score</h3>
-        <input type="number" v-model="resourceCardsScore" @input="scoreTotal">
-        ({{ resourceCardsScore }})
+        <ui-textfield
+                input-type="number"
+                v-model="resourceCardsScore"
+                helper-text-id="resources-count-helper-text"
+                @input="scoreTotal"
+        >
+            <i class="fa-solid fa-store"></i> Resource Cards Score ({{ resourceCardsScore }})
+        </ui-textfield>
+        <ui-textfield-helper
+                id="resources-count-helper-text"
+                :visible="true"
+        >
+            Enter resource cards score
+        </ui-textfield-helper>
     </div>
     <div>
         <h2>Total Score:</h2>
         <h2>{{ totalScore }}</h2>
     </div>
 </div>
-
+<script src="https://unpkg.com/vue@3"></script>
+<script src="https://kit.fontawesome.com/edcec8760f.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/balm-ui"></script>
+<script src="https://unpkg.com/balm-ui/dist/balm-ui-plus.js"></script>
 <script>
     const { createApp } = Vue
 
-    createApp({
+    const app = createApp({
         data() {
             return {
                 message: 'Five Tribes Board Game Calculator',
@@ -71,15 +167,22 @@
         },
         methods: {
             scoreTotal() {
-                this.totalScore = this.goldCount
-                    + this.viziersCount
-                    + this.eldersCount * 2
-                    + this.djinniesScore
-                    + this.palmTreesCount * 3
-                    + this.palacesCount * 5
-                    + this.camelsScore
-                    + this.resourceCardsScore;
+                this.totalScore = parseInt(this.goldCount)
+                    + parseInt(this.viziersCount)
+                    + parseInt(this.eldersCount * 2)
+                    + parseInt(this.djinniesScore)
+                    + parseInt(this.palmTreesCount * 3)
+                    + parseInt(this.palacesCount * 5)
+                    + parseInt(this.camelsScore)
+                    + parseInt(this.resourceCardsScore);
             }
         }
-    }).mount('#app')
+    })
+
+    app.use(BalmUI);
+    app.use(BalmUIPlus);
+
+    app.mount('#app');
 </script>
+</body>
+</html>
