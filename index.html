@@ -63,15 +63,24 @@
                 v-model="djinniesScore"
                 helper-text-id="djinns-count-helper-text"
                 @input="scoreTotal"
+                disabled
         >
             <i class="fas fa-oil-can"></i> Djinns Score ({{ djinniesScore }})
         </ui-textfield>
-        <ui-textfield-helper
-                id="djinns-count-helper-text"
-                :visible="true"
-        >
-            Enter Djinns Points
-        </ui-textfield-helper>
+        <ui-collapse>
+            <template #toggle>
+                <ui-button>Select Djinns</ui-button>
+            </template>
+            <ui-tree
+                    v-model="selectedDjinns"
+                    :data="djinnsTreeData"
+                    :data-format="djinnDataFormat"
+                    :max-level="1"
+                    multiple
+                    @input="scoreTotal"
+            >
+            </ui-tree>
+        </ui-collapse>
     </div>
     <div>
         <ui-textfield
