@@ -1,8 +1,15 @@
 const { createApp } = Vue
 
 const defaultPalmTreeVPs = 3;
+const haurvatatDjinnPalmTreeVPs = 5;
+
 const defaultVizierVPs = 1;
+const jafaarDjinnVizierVPs = 3;
+
 const defaultElderVPs = 2;
+const shamhatDjinnElderVPs = 4;
+
+const defaultPalaceVPs = 5;
 
 const app = createApp({
     data() {
@@ -19,6 +26,8 @@ const app = createApp({
             palmTreeVPs: defaultPalmTreeVPs,
             palmTreesScore: 0,
             palacesCount: 0,
+            palaceVPs: defaultPalaceVPs,
+            palacesScore: 0,
             camelsScore: 0,
             resourceCardsScore: 0,
             totalScore: 0,
@@ -51,6 +60,9 @@ const app = createApp({
         }
     },
     methods: {
+        scorePalaces() {
+            this.palacesScore = this.palacesCount * this.palaceVPs;
+        },
         scoreElders() {
             this.eldersScore = this.eldersCount * this.elderVPs;
         },
@@ -71,15 +83,15 @@ const app = createApp({
                 score += djinn.value;
 
                 if (djinn.name === "Haurvatat") {
-                    this.palmTreeVPs = 5;
+                    this.palmTreeVPs = haurvatatDjinnPalmTreeVPs;
                 }
 
                 if (djinn.name === "Jafaar") {
-                    this.vizierVPs = 3;
+                    this.vizierVPs = jafaarDjinnVizierVPs;
                 }
 
                 if (djinn.name === "Shamhat") {
-                    this.elderVPs = 4;
+                    this.elderVPs = shamhatDjinnElderVPs;
                 }
             }
 
@@ -90,13 +102,14 @@ const app = createApp({
             this.scorePalmTrees();
             this.scoreViziers();
             this.scoreElders();
+            this.scorePalaces();
 
             this.totalScore = parseInt(this.goldCount)
                 + parseInt(this.viziersScore)
                 + parseInt(this.eldersScore)
                 + parseInt(this.djinniesScore)
                 + parseInt(this.palmTreesScore)
-                + parseInt(this.palacesCount * 5)
+                + parseInt(this.palacesScore)
                 + parseInt(this.camelsScore)
                 + parseInt(this.resourceCardsScore);
         }
