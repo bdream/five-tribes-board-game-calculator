@@ -1,5 +1,7 @@
 const { createApp } = Vue
 
+const defaultPalmTreeVPs = 3;
+
 const app = createApp({
     data() {
         return {
@@ -8,6 +10,8 @@ const app = createApp({
             eldersCount: 0,
             djinniesScore: 0,
             palmTreesCount: 0,
+            palmTreeVPs: defaultPalmTreeVPs,
+            palmTreesScore: 0,
             palacesCount: 0,
             camelsScore: 0,
             resourceCardsScore: 0,
@@ -22,7 +26,7 @@ const app = createApp({
                 {title: "Echidna (4)", key: {name: "Echidna", value: 4}},
                 {title: "Enki (8)", key: {name: "Enki", value: 8}},
                 {title: "Hagis (10)", key: {name: "Hagis", value: 10}},
-                {title: "Haurvatat (8)", key: {name: "Haurvatat", value: 8}},
+                {title: "Haurvatat (8) [Each of Palm Trees is worth 5 VPs instead of 3]", key: {name: "Haurvatat", value: 8}},
                 {title: "Iblis (8)", key: {name: "Iblis", value: 8}},
                 {title: "Jafaar (6)", key: {name: "Jafaar", value: 6}},
                 {title: "Kandicha (6)", key: {name: "Kandicha", value: 6}},
@@ -41,22 +45,34 @@ const app = createApp({
         }
     },
     methods: {
+        scorePalmTrees() {
+            this.palmTreesScore = this.palmTreesCount * this.palmTreeVPs;
+        },
         scoreDjinns() {
+            this.palmTreeVPs = defaultPalmTreeVPs;
+
             var score = 0;
             for(var djinnKey in this.selectedDjinns) {
-                score += this.selectedDjinns[djinnKey].value;
+                const djinn = this.selectedDjinns[djinnKey];
+                score += djinn.value;
+
+                if (djinn.name === "Haurvatat") {
+                    this.palmTreeVPs = 5;
+                }
+
             }
 
             this.djinniesScore = score;
         },
         scoreTotal() {
             this.scoreDjinns();
+            this.scorePalmTrees();
 
             this.totalScore = parseInt(this.goldCount)
                 + parseInt(this.viziersCount)
                 + parseInt(this.eldersCount * 2)
                 + parseInt(this.djinniesScore)
-                + parseInt(this.palmTreesCount * 3)
+                + parseInt(this.palmTreesScore)
                 + parseInt(this.palacesCount * 5)
                 + parseInt(this.camelsScore)
                 + parseInt(this.resourceCardsScore);
