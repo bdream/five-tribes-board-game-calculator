@@ -28,7 +28,9 @@ const app = createApp({
             palacesCount: 0,
             palaceVPs: defaultPalaceVPs,
             palacesScore: 0,
-            camelsScore: 0,
+            lastPlayerTileId: 0,
+            playerTiles: [],
+            playerTilesScore: 0,
             resourceCardsScore: 0,
             totalScore: 0,
             djinnDataFormat: { label: "title", value: "key" },
@@ -60,6 +62,29 @@ const app = createApp({
         }
     },
     methods: {
+        addPlayerTile(tileVPs) {
+            this.lastPlayerTileId++;
+            this.playerTiles.push({
+                id: this.lastPlayerTileId,
+                tileVPs: tileVPs
+            });
+
+            this.scoreTotal();
+        },
+        removePlayerTileById(id) {
+            let index = this.playerTiles.findIndex((item) => item.id === id);
+            this.playerTiles.splice(index, 1);
+
+            this.scoreTotal();
+        },
+        scorePlayerTiles() {
+            var score = 0;
+            for(var tile in this.playerTiles) {
+                score += this.playerTiles[tile].tileVPs;
+            }
+
+            this.playerTilesScore = score;
+        },
         scorePalaces() {
             this.palacesScore = this.palacesCount * this.palaceVPs;
         },
@@ -103,6 +128,7 @@ const app = createApp({
             this.scoreViziers();
             this.scoreElders();
             this.scorePalaces();
+            this.scorePlayerTiles();
 
             this.totalScore = parseInt(this.goldCount)
                 + parseInt(this.viziersScore)
@@ -110,7 +136,7 @@ const app = createApp({
                 + parseInt(this.djinniesScore)
                 + parseInt(this.palmTreesScore)
                 + parseInt(this.palacesScore)
-                + parseInt(this.camelsScore)
+                + parseInt(this.playerTilesScore)
                 + parseInt(this.resourceCardsScore);
         }
     }

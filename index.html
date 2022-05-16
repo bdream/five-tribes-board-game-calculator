@@ -117,18 +117,71 @@
     <div>
         <ui-textfield
                 input-type="number"
-                v-model="camelsScore"
-                helper-text-id="camels-count-helper-text"
+                v-model="playerTilesScore"
                 @input="scoreTotal"
+                disabled
         >
-            <i class="fa-solid fa-horse"></i> Camels Score ({{ camelsScore }})
+            <i class="fa-solid fa-horse"></i> Player Tiles Score ({{ playerTilesScore }})
         </ui-textfield>
-        <ui-textfield-helper
-                id="camels-count-helper-text"
-                :visible="true"
-        >
-            Enter camels score
-        </ui-textfield-helper>
+        <ui-collapse>
+            <template #toggle>
+                <ui-button>Select Player Tiles</ui-button>
+            </template>
+            <ui-chips id="input-player-tile-chip-set" type="input" :items="playerTiles">
+                <ui-chip
+                        v-for="item in playerTiles"
+                        :key="item.id"
+                        deletable
+                        @remove="removePlayerTileById(item.id)"
+                >
+                    <i class="fa-solid fa-horse"></i> {{ item.tileVPs }}
+                </ui-chip>
+            </ui-chips>
+            <ui-list>
+                <ui-item @click="addPlayerTile(4)">
+                    <ui-item-first-content>
+                        <ui-icon><i class="fa-solid fa-circle-plus"></i></ui-icon>
+                    </ui-item-first-content>
+                    <ui-item-text-content>Add 4 VPs tile</ui-item-text-content>
+                </ui-item>
+                <ui-item @click="addPlayerTile(5)">
+                    <ui-item-first-content>
+                        <ui-icon><i class="fa-solid fa-circle-plus"></i></ui-icon>
+                    </ui-item-first-content>
+                    <ui-item-text-content>Add 5 VPs tile</ui-item-text-content>
+                </ui-item>
+                <ui-item @click="addPlayerTile(6)">
+                    <ui-item-first-content>
+                        <ui-icon><i class="fa-solid fa-circle-plus"></i></ui-icon>
+                    </ui-item-first-content>
+                    <ui-item-text-content>Add 6 VPs tile</ui-item-text-content>
+                </ui-item>
+                <ui-item @click="addPlayerTile(8)">
+                    <ui-item-first-content>
+                        <ui-icon><i class="fa-solid fa-circle-plus"></i></ui-icon>
+                    </ui-item-first-content>
+                    <ui-item-text-content>Add 8 VPs tile</ui-item-text-content>
+                </ui-item>
+                <ui-item @click="addPlayerTile(10)">
+                    <ui-item-first-content>
+                        <ui-icon><i class="fa-solid fa-circle-plus"></i></ui-icon>
+                    </ui-item-first-content>
+                    <ui-item-text-content>Add 10 VPs tile</ui-item-text-content>
+                </ui-item>
+                <ui-item @click="addPlayerTile(12)">
+                    <ui-item-first-content>
+                        <ui-icon><i class="fa-solid fa-circle-plus"></i></ui-icon>
+                    </ui-item-first-content>
+                    <ui-item-text-content>Add 12 VPs tile</ui-item-text-content>
+                </ui-item>
+                <ui-item @click="addPlayerTile(15)">
+                    <ui-item-first-content>
+                        <ui-icon><i class="fa-solid fa-circle-plus"></i></ui-icon>
+                    </ui-item-first-content>
+                    <ui-item-text-content>Add 15 VPs tile</ui-item-text-content>
+                </ui-item>
+            </ui-list>
+        </ui-collapse>
     </div>
     <div>
         <ui-textfield
