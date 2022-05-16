@@ -11,6 +11,8 @@ const shamhatDjinnElderVPs = 4;
 
 const defaultPalaceVPs = 5;
 
+const defaultMerchandiseCardSuitSliderValue = 1;
+
 const app = createApp({
     data() {
         return {
@@ -31,7 +33,10 @@ const app = createApp({
             lastPlayerTileId: 0,
             playerTiles: [],
             playerTilesScore: 0,
-            resourceCardsScore: 0,
+            lastMerchandiseCardSuitId: 1,
+            merchandiseCardSuitSliderValue: defaultMerchandiseCardSuitSliderValue,
+            merchandiseCardSuits: [],
+            merchandiseCardSuitsScore: 0,
             totalScore: 0,
             djinnDataFormat: { label: "title", value: "key" },
             djinnsTreeData: [
@@ -62,6 +67,56 @@ const app = createApp({
         }
     },
     methods: {
+        getMerchandiseCardSuitVPs(cardsCount) {
+            let VPs = 0;
+            switch (cardsCount) {
+                case 1:
+                    VPs = 1;
+                    break;
+                case 2:
+                    VPs = 3;
+                    break;
+                case 3:
+                    VPs = 7;
+                    break;
+                case 4:
+                    VPs = 13;
+                    break;
+                case 5:
+                    VPs = 21;
+                    break;
+                case 6:
+                    VPs = 30;
+                    break;
+                case 7:
+                    VPs = 40;
+                    break;
+                case 8:
+                    VPs = 50;
+                    break;
+                case 9:
+                    VPs = 60;
+                    break;
+            }
+
+            return VPs;
+        },
+        addMerchandiseCardSuit(suitSize) {
+            this.lastMerchandiseCardSuitId++;
+            this.merchandiseCardSuits.push({
+                id: this.lastMerchandiseCardSuitId,
+                size: suitSize,
+                victoryPoints: this.getMerchandiseCardSuitVPs(suitSize)
+            });
+
+            this.scoreTotal();
+        },
+        removeMerchandiseCardSuitById(id) {
+            let index = this.merchandiseCardSuits.findIndex((item) => item.id === id);
+            this.merchandiseCardSuits.splice(index, 1);
+
+            this.scoreTotal();
+        },
         addPlayerTile(tileVPs) {
             this.lastPlayerTileId++;
             this.playerTiles.push({
@@ -77,9 +132,17 @@ const app = createApp({
 
             this.scoreTotal();
         },
+        scoreMerchandiseCardSuits() {
+            let score = 0;
+            for(let suit in this.merchandiseCardSuits) {
+                score += this.merchandiseCardSuits[suit].victoryPoints;
+            }
+
+            this.merchandiseCardSuitsScore = score;
+        },
         scorePlayerTiles() {
-            var score = 0;
-            for(var tile in this.playerTiles) {
+            let score = 0;
+            for(let tile in this.playerTiles) {
                 score += this.playerTiles[tile].tileVPs;
             }
 
@@ -129,6 +192,7 @@ const app = createApp({
             this.scoreElders();
             this.scorePalaces();
             this.scorePlayerTiles();
+            this.scoreMerchandiseCardSuits();
 
             this.totalScore = parseInt(this.goldCount)
                 + parseInt(this.viziersScore)
@@ -137,7 +201,7 @@ const app = createApp({
                 + parseInt(this.palmTreesScore)
                 + parseInt(this.palacesScore)
                 + parseInt(this.playerTilesScore)
-                + parseInt(this.resourceCardsScore);
+                + parseInt(this.merchandiseCardSuitsScore);
         }
     }
 })

@@ -121,7 +121,7 @@
                 @input="scoreTotal"
                 disabled
         >
-            <i class="fa-solid fa-horse"></i> Player Tiles Score ({{ playerTilesScore }})
+            <i class="fa-solid fa-horse-head"></i> Player Tiles Score ({{ playerTilesScore }})
         </ui-textfield>
         <ui-collapse>
             <template #toggle>
@@ -186,18 +186,35 @@
     <div>
         <ui-textfield
                 input-type="number"
-                v-model="resourceCardsScore"
-                helper-text-id="resources-count-helper-text"
+                v-model="merchandiseCardSuitsScore"
                 @input="scoreTotal"
+                disabled
         >
-            <i class="fa-solid fa-store"></i> Resource Cards Score ({{ resourceCardsScore }})
+            <i class="fa-solid fa-store"></i> Merchandise Cards Score ({{ merchandiseCardSuitsScore }})
         </ui-textfield>
-        <ui-textfield-helper
-                id="resources-count-helper-text"
-                :visible="true"
-        >
-            Enter resource cards score
-        </ui-textfield-helper>
+        <ui-collapse>
+            <template #toggle>
+                <ui-button>Select Merchandise card suits</ui-button>
+            </template>
+            <ui-chips id="input-merchandise-card-suit-chip-set" type="input" :items="merchandiseCardSuits">
+                <ui-chip
+                        v-for="item in merchandiseCardSuits"
+                        :key="item.id"
+                        deletable
+                        @remove="removeMerchandiseCardSuitById(item.id)"
+                >
+                    <i class="fa-solid fa-layer-group"></i> {{ item.size }} card suit - {{ item.victoryPoints }} VPs
+                </ui-chip>
+            </ui-chips>
+            <ui-list>
+                <ui-item v-for="suitSize in 9" @click="addMerchandiseCardSuit(suitSize)">
+                    <ui-item-first-content>
+                        <ui-icon><i class="fa-solid fa-circle-plus"></i></ui-icon>
+                    </ui-item-first-content>
+                    <ui-item-text-content>Add {{ suitSize }} card suit</ui-item-text-content>
+                </ui-item>
+            </ui-list>
+        </ui-collapse>
     </div>
     <h5 :class="$tt('headline5')">Total Score: {{ totalScore }}</h5>
 </div>
