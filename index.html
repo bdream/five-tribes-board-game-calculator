@@ -138,47 +138,11 @@
                 </ui-chip>
             </ui-chips>
             <ui-list>
-                <ui-item @click="addPlayerTile(4)">
+                <ui-item v-for="tileVPs in availableTileVPs" @click="addPlayerTile(tileVPs)">
                     <ui-item-first-content>
                         <ui-icon><i class="fa-solid fa-circle-plus"></i></ui-icon>
                     </ui-item-first-content>
-                    <ui-item-text-content>Add 4 VPs tile</ui-item-text-content>
-                </ui-item>
-                <ui-item @click="addPlayerTile(5)">
-                    <ui-item-first-content>
-                        <ui-icon><i class="fa-solid fa-circle-plus"></i></ui-icon>
-                    </ui-item-first-content>
-                    <ui-item-text-content>Add 5 VPs tile</ui-item-text-content>
-                </ui-item>
-                <ui-item @click="addPlayerTile(6)">
-                    <ui-item-first-content>
-                        <ui-icon><i class="fa-solid fa-circle-plus"></i></ui-icon>
-                    </ui-item-first-content>
-                    <ui-item-text-content>Add 6 VPs tile</ui-item-text-content>
-                </ui-item>
-                <ui-item @click="addPlayerTile(8)">
-                    <ui-item-first-content>
-                        <ui-icon><i class="fa-solid fa-circle-plus"></i></ui-icon>
-                    </ui-item-first-content>
-                    <ui-item-text-content>Add 8 VPs tile</ui-item-text-content>
-                </ui-item>
-                <ui-item @click="addPlayerTile(10)">
-                    <ui-item-first-content>
-                        <ui-icon><i class="fa-solid fa-circle-plus"></i></ui-icon>
-                    </ui-item-first-content>
-                    <ui-item-text-content>Add 10 VPs tile</ui-item-text-content>
-                </ui-item>
-                <ui-item @click="addPlayerTile(12)">
-                    <ui-item-first-content>
-                        <ui-icon><i class="fa-solid fa-circle-plus"></i></ui-icon>
-                    </ui-item-first-content>
-                    <ui-item-text-content>Add 12 VPs tile</ui-item-text-content>
-                </ui-item>
-                <ui-item @click="addPlayerTile(15)">
-                    <ui-item-first-content>
-                        <ui-icon><i class="fa-solid fa-circle-plus"></i></ui-icon>
-                    </ui-item-first-content>
-                    <ui-item-text-content>Add 15 VPs tile</ui-item-text-content>
+                    <ui-item-text-content>Add {{ tileVPs }} VPs tile</ui-item-text-content>
                 </ui-item>
             </ui-list>
         </ui-collapse>

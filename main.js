@@ -30,6 +30,7 @@ const app = createApp({
             palacesCount: 0,
             palaceVPs: defaultPalaceVPs,
             palacesScore: 0,
+            availableTileVPs: [4, 5, 6, 8, 10, 12, 15],
             lastPlayerTileId: 0,
             playerTiles: [],
             playerTilesScore: 0,
