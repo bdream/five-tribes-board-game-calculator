@@ -16,6 +16,25 @@ const defaultMerchandiseCardSuitSliderValue = 1;
 const app = createApp({
     data() {
         return {
+            animalClasses: [
+                "fa-dog",
+                "fa-bugs",
+                "fa-cow",
+                "fa-spider",
+                "fa-fish",
+                "fa-horse",
+                "fa-hippo",
+                "fa-crow",
+                "fa-dove",
+                "fa-dragon",
+                "fa-fish-fins",
+                "fa-otter",
+                "fa-frog",
+                "fa-mosquito",
+                "fa-locust",
+                "fa-worm",
+                "fa-cat"
+            ],
             goldCoinsCount: 0,
             goldCoinsScore: 0,
             viziersCount: 0,
@@ -121,10 +140,16 @@ const app = createApp({
         },
         addPlayerTile(tileVPs) {
             this.lastPlayerTileId++;
-            this.playerTiles.push({
+
+            const animalIndex = Math.floor(Math.random() * this.animalClasses.length);
+
+            const playerTile = {
                 id: this.lastPlayerTileId,
-                tileVPs: tileVPs
-            });
+                tileVPs: tileVPs,
+                tileClass: this.animalClasses[animalIndex]
+            };
+
+            this.playerTiles.push(playerTile);
 
             this.scoreTotal();
         },

@@ -123,7 +123,7 @@
                         deletable
                         @remove="removePlayerTileById(item.id)"
                 >
-                    <i class="fa-solid fa-horse"></i> {{ item.tileVPs }}
+                    <i class="fa-solid" :class="item.tileClass"></i> {{ item.tileVPs }}
                 </ui-chip>
             </ui-chips>
             <ui-list>
