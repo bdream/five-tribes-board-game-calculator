@@ -16,7 +16,8 @@ const defaultMerchandiseCardSuitSliderValue = 1;
 const app = createApp({
     data() {
         return {
-            goldCount: 0,
+            goldCoinsCount: 0,
+            goldCoinsScore: 0,
             viziersCount: 0,
             vizierVPs: defaultVizierVPs,
             viziersScore: 0,
@@ -133,6 +134,9 @@ const app = createApp({
 
             this.scoreTotal();
         },
+        scoreGoldCoins() {
+            this.goldCoinsScore = this.goldCoinsCount * 1;
+        },
         scoreMerchandiseCardSuits() {
             let score = 0;
             for(let suit in this.merchandiseCardSuits) {
@@ -187,6 +191,7 @@ const app = createApp({
             this.djinniesScore = score;
         },
         scoreTotal() {
+            this.scoreGoldCoins();
             this.scoreDjinns();
             this.scorePalmTrees();
             this.scoreViziers();
@@ -195,7 +200,7 @@ const app = createApp({
             this.scorePlayerTiles();
             this.scoreMerchandiseCardSuits();
 
-            this.totalScore = parseInt(this.goldCount)
+            this.totalScore = parseInt(this.goldCoinsScore)
                 + parseInt(this.viziersScore)
                 + parseInt(this.eldersScore)
                 + parseInt(this.djinniesScore)
