@@ -23,27 +23,37 @@
     </div>
     <div>
         <div :class="$tt('subtitle1')">
-            <i class="fa-solid fa-person-military-pointing"></i> Viziers Score ({{ viziersScore }}) [x{{ vizierVPs }}]
+            <i class="fa-solid fa-person-military-pointing"></i> Viziers Score ({{ viziersScore }})
         </div>
-        <ui-textfield
-                input-type="number"
-                v-model="viziersCount"
-                @input="scoreTotal"
-        >
-            Number of yellow meeples
-        </ui-textfield>
+        <ui-badge state="info">
+            <ui-textfield
+                    input-type="number"
+                    v-model="viziersCount"
+                    @input="scoreTotal"
+            >
+                Number of yellow meeples
+            </ui-textfield>
+            <template #badge>
+                <i class="fa-solid fa-xmark"></i> {{ vizierVPs }}
+            </template>
+        </ui-badge>
     </div>
     <div>
         <div :class="$tt('subtitle1')">
-            <i class="fa-solid fa-hat-wizard"></i> Elders Score ({{ eldersScore }}) [x{{ elderVPs }}]
+            <i class="fa-solid fa-hat-wizard"></i> Elders Score ({{ eldersScore }})
         </div>
-        <ui-textfield
-                input-type="number"
-                v-model="eldersCount"
-                @input="scoreTotal"
-        >
-            Number of white meeples
-        </ui-textfield>
+        <ui-badge state="info">
+            <ui-textfield
+                    input-type="number"
+                    v-model="eldersCount"
+                    @input="scoreTotal"
+            >
+                Number of white meeples
+            </ui-textfield>
+            <template #badge>
+                <i class="fa-solid fa-xmark"></i> {{ elderVPs }}
+            </template>
+        </ui-badge>
     </div>
     <div>
         <div :class="$tt('subtitle1')">
@@ -66,27 +76,37 @@
     </div>
     <div>
         <div :class="$tt('subtitle1')">
-            <i class="fa-solid fa-tree"></i> Palm Trees Score ({{ palmTreesScore }}) [x{{ palmTreeVPs }}]
+            <i class="fa-solid fa-tree"></i> Palm Trees Score ({{ palmTreesScore }})
         </div>
-        <ui-textfield
-                input-type="number"
-                v-model="palmTreesCount"
-                @input="scoreTotal"
-        >
-            Number of palm trees
-        </ui-textfield>
+        <ui-badge state="info">
+            <ui-textfield
+                    input-type="number"
+                    v-model="palmTreesCount"
+                    @input="scoreTotal"
+            >
+                Number of palm trees
+            </ui-textfield>
+            <template #badge>
+                <i class="fa-solid fa-xmark"></i> {{ palmTreeVPs }}
+            </template>
+        </ui-badge>
     </div>
     <div>
         <div :class="$tt('subtitle1')">
-            <i class="fa-brands fa-fort-awesome"></i> Palaces Score ({{ palacesScore }}) [x{{ palaceVPs }}]
+            <i class="fa-brands fa-fort-awesome"></i> Palaces Score ({{ palacesScore }})
         </div>
-        <ui-textfield
-                input-type="number"
-                v-model="palacesCount"
-                @input="scoreTotal"
-        >
-            Number of palaces
-        </ui-textfield>
+        <ui-badge state="info">
+            <ui-textfield
+                    input-type="number"
+                    v-model="palacesCount"
+                    @input="scoreTotal"
+            >
+                Number of palaces
+            </ui-textfield>
+            <template #badge>
+                <i class="fa-solid fa-xmark"></i> {{ palaceVPs }}
+            </template>
+        </ui-badge>
     </div>
     <div>
         <div :class="$tt('subtitle1')">
