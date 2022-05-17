@@ -4,12 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hello BalmUI</title>
     <link rel="stylesheet" href="https://unpkg.com/balm-ui/dist/balm-ui.css" />
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
 <div id="app">
     <h4 :class="$tt('headline4')">Five Tribes: The Djinns Of Naqala</h4>
     <h6 :class="$tt('headline6')">Board Game Score Calculator</h6>
-    <div>
+    <div class="scoreBlock">
         <div :class="$tt('subtitle1')">
             <i class="fas fa-coins"></i> Gold Coins Score ({{ goldCoinsScore }})
         </div>
@@ -21,7 +22,7 @@
             Gold Coins amount
         </ui-textfield>
     </div>
-    <div>
+    <div class="scoreBlock">
         <div :class="$tt('subtitle1')">
             <i class="fa-solid fa-person-military-pointing"></i> Viziers Score ({{ viziersScore }})
         </div>
@@ -38,7 +39,7 @@
             </template>
         </ui-badge>
     </div>
-    <div>
+    <div class="scoreBlock">
         <div :class="$tt('subtitle1')">
             <i class="fa-solid fa-hat-wizard"></i> Elders Score ({{ eldersScore }})
         </div>
@@ -55,7 +56,7 @@
             </template>
         </ui-badge>
     </div>
-    <div>
+    <div class="scoreBlock">
         <div :class="$tt('subtitle1')">
             <i class="fas fa-oil-can"></i> Djinns Score ({{ djinniesScore }})
         </div>
@@ -74,7 +75,7 @@
             </ui-tree>
         </ui-collapse>
     </div>
-    <div>
+    <div class="scoreBlock">
         <div :class="$tt('subtitle1')">
             <i class="fa-solid fa-tree"></i> Palm Trees Score ({{ palmTreesScore }})
         </div>
@@ -91,7 +92,7 @@
             </template>
         </ui-badge>
     </div>
-    <div>
+    <div class="scoreBlock">
         <div :class="$tt('subtitle1')">
             <i class="fa-brands fa-fort-awesome"></i> Palaces Score ({{ palacesScore }})
         </div>
@@ -108,7 +109,7 @@
             </template>
         </ui-badge>
     </div>
-    <div>
+    <div class="scoreBlock">
         <div :class="$tt('subtitle1')">
             <i class="fa-solid fa-horse-head"></i> Player Tiles Score ({{ playerTilesScore }})
         </div>
@@ -136,7 +137,7 @@
             </ui-list>
         </ui-collapse>
     </div>
-    <div>
+    <div class="scoreBlock">
         <div :class="$tt('subtitle1')">
             <i class="fa-solid fa-store"></i> Merchandise Score ({{ merchandiseCardSuitsScore }})
         </div>
@@ -164,7 +165,9 @@
             </ui-list>
         </ui-collapse>
     </div>
-    <h5 :class="$tt('headline5')">Total Score: {{ totalScore }}</h5>
+    <div class="scoreBlock">
+        <h5 :class="$tt('headline5')">Total Score: {{ totalScore }}</h5>
+    </div>
 </div>
 <script src="https://unpkg.com/vue@3"></script>
 <script src="https://kit.fontawesome.com/edcec8760f.js" crossorigin="anonymous"></script>
