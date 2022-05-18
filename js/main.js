@@ -109,15 +109,15 @@ const app = createApp({
                 const djinn = this.selectedDjinns[djinnKey];
                 score += djinn.value;
 
-                if (djinn.name === "Haurvatat") {
+                if (djinn.name === Settings.DJINN_HAURVATAT_NAME) {
                     this.palmTreeVPs = Settings.DJINN_HAURVATAT_PALM_TREE_VICTORY_POINTS;
                 }
 
-                if (djinn.name === "Jafaar") {
+                    if (djinn.name === Settings.DJINN_JAFAAR_NAME) {
                     this.vizierVPs = Settings.DJINN_JAFAAR_VIZIER_VICTORY_POINTS;
                 }
 
-                if (djinn.name === "Shamhat") {
+                if (djinn.name === Settings.DJINN_SHAMHAT_NAME) {
                     this.elderVPs = Settings.DJINN_SHAMHAT_ELDER_VICTORY_POINTS;
                 }
             }
