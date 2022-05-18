@@ -55,5 +55,20 @@ const Settings = {
 
         const randomAnimalIndex = Math.floor(Math.random() * animalClasses.length);
         return animalClasses[randomAnimalIndex];
-    }
+    },
+    getMerchandiseCardSuitVictoryPoints(cardsCount) {
+        const merchandiseCardSuitVictoryPoints = {
+            "1": 1,
+            "2": 3,
+            "3": 7,
+            "4": 13,
+            "5": 21,
+            "6": 30,
+            "7": 40,
+            "8": 50,
+            "9": 60
+        };
+
+        return merchandiseCardSuitVictoryPoints[cardsCount];
+    },
 }

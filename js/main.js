@@ -30,47 +30,16 @@ const app = createApp({
         }
     },
     methods: {
-        getMerchandiseCardSuitVPs(cardsCount) {
-            let VPs = 0;
-            switch (cardsCount) {
-                case 1:
-                    VPs = 1;
-                    break;
-                case 2:
-                    VPs = 3;
-                    break;
-                case 3:
-                    VPs = 7;
-                    break;
-                case 4:
-                    VPs = 13;
-                    break;
-                case 5:
-                    VPs = 21;
-                    break;
-                case 6:
-                    VPs = 30;
-                    break;
-                case 7:
-                    VPs = 40;
-                    break;
-                case 8:
-                    VPs = 50;
-                    break;
-                case 9:
-                    VPs = 60;
-                    break;
-            }
-
-            return VPs;
-        },
-        addMerchandiseCardSuit(suitSize) {
+        addMerchandiseCardSuit(cardsCount) {
             this.lastMerchandiseCardSuitId++;
-            this.merchandiseCardSuits.push({
+
+            const suit = {
                 id: this.lastMerchandiseCardSuitId,
-                size: suitSize,
-                victoryPoints: this.getMerchandiseCardSuitVPs(suitSize)
-            });
+                size: cardsCount,
+                victoryPoints: Settings.getMerchandiseCardSuitVictoryPoints(cardsCount)
+            };
+
+            this.merchandiseCardSuits.push(suit);
 
             this.scoreTotal();
         },
