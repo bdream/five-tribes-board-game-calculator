@@ -1,18 +1,5 @@
 const { createApp } = Vue
 
-const defaultPalmTreeVPs = 3;
-const haurvatatDjinnPalmTreeVPs = 5;
-
-const defaultVizierVPs = 1;
-const jafaarDjinnVizierVPs = 3;
-
-const defaultElderVPs = 2;
-const shamhatDjinnElderVPs = 4;
-
-const defaultPalaceVPs = 5;
-
-const defaultMerchandiseCardSuitSliderValue = 1;
-
 const app = createApp({
     data() {
         return {
@@ -38,24 +25,23 @@ const app = createApp({
             goldCoinsCount: 0,
             goldCoinsScore: 0,
             viziersCount: 0,
-            vizierVPs: defaultVizierVPs,
+            vizierVPs: Settings.DEFAULT_VIZIER_VICTORY_POINTS,
             viziersScore: 0,
             eldersCount: 0,
-            elderVPs: defaultElderVPs,
+            elderVPs: Settings.DEFAULT_ELDER_VICTORY_POINTS,
             eldersScore: 0,
             djinniesScore: 0,
             palmTreesCount: 0,
-            palmTreeVPs: defaultPalmTreeVPs,
+            palmTreeVPs: Settings.DEFAULT_PALM_TREE_VICTORY_POINTS,
             palmTreesScore: 0,
             palacesCount: 0,
-            palaceVPs: defaultPalaceVPs,
+            palaceVPs: Settings.DEFAULT_PALACE_VICTORY_POINTS,
             palacesScore: 0,
             availableTileVPs: [4, 5, 6, 8, 10, 12, 15],
             lastPlayerTileId: 0,
             playerTiles: [],
             playerTilesScore: 0,
             lastMerchandiseCardSuitId: 1,
-            merchandiseCardSuitSliderValue: defaultMerchandiseCardSuitSliderValue,
             merchandiseCardSuits: [],
             merchandiseCardSuitsScore: 0,
             totalScore: 0,
@@ -191,9 +177,9 @@ const app = createApp({
             this.viziersScore = this.viziersCount * this.vizierVPs;
         },
         scoreDjinns() {
-            this.palmTreeVPs = defaultPalmTreeVPs;
-            this.vizierVPs = defaultVizierVPs;
-            this.elderVPs = defaultElderVPs;
+            this.palmTreeVPs = Settings.DEFAULT_PALM_TREE_VICTORY_POINTS;
+            this.vizierVPs = Settings.DEFAULT_VIZIER_VICTORY_POINTS;
+            this.elderVPs = Settings.DEFAULT_ELDER_VICTORY_POINTS;
 
             var score = 0;
             for(var djinnKey in this.selectedDjinns) {
@@ -201,15 +187,15 @@ const app = createApp({
                 score += djinn.value;
 
                 if (djinn.name === "Haurvatat") {
-                    this.palmTreeVPs = haurvatatDjinnPalmTreeVPs;
+                    this.palmTreeVPs = Settings.DJINN_HAURVATAT_PALM_TREE_VICTORY_POINTS;
                 }
 
                 if (djinn.name === "Jafaar") {
-                    this.vizierVPs = jafaarDjinnVizierVPs;
+                    this.vizierVPs = Settings.DJINN_JAFAAR_VIZIER_VICTORY_POINTS;
                 }
 
                 if (djinn.name === "Shamhat") {
-                    this.elderVPs = shamhatDjinnElderVPs;
+                    this.elderVPs = Settings.DJINN_SHAMHAT_ELDER_VICTORY_POINTS;
                 }
             }
 
