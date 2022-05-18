@@ -24,5 +24,9 @@ const Settings = {
         "fa-locust",
         "fa-worm",
         "fa-cat"
-    ]
+    ],
+    getRandomAnimalClass() {
+        const randomAnimalIndex = Math.floor(Math.random() * Settings.ANIMAL_CLASSES.length);
+        return Settings.ANIMAL_CLASSES[randomAnimalIndex];
+    }
 }

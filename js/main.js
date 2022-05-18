@@ -108,12 +108,10 @@ const app = createApp({
         addPlayerTile(tileVPs) {
             this.lastPlayerTileId++;
 
-            const animalIndex = Math.floor(Math.random() * this.ANIMAL_CLASSES.length);
-
             const playerTile = {
                 id: this.lastPlayerTileId,
                 tileVPs: tileVPs,
-                tileClass: this.ANIMAL_CLASSES[animalIndex]
+                tileClass: Settings.getRandomAnimalClass()
             };
 
             this.playerTiles.push(playerTile);
