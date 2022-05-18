@@ -70,11 +70,11 @@
             </template>
             <ui-tree
                     v-model="selectedDjinns"
-                    :data="djinnsTreeData"
-                    :data-format="djinnDataFormat"
+                    :data="settings.DJINN_TREE_DATA"
+                    :data-format="settings.DJINN_TREE_DATA_FORMAT"
                     :max-level="1"
                     multiple
-                    @input="scoreTotal"
+                    @click="scoreTotal"
             >
             </ui-tree>
         </ui-collapse>
