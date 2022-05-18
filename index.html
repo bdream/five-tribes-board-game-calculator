@@ -132,7 +132,7 @@
                 </ui-chip>
             </ui-chips>
             <ui-list>
-                <ui-item v-for="tileVPs in availableTileVPs" @click="addPlayerTile(tileVPs)">
+                <ui-item v-for="tileVPs in settings.TILE_VICTORY_POINTS_VALUES" @click="addPlayerTile(tileVPs)">
                     <ui-item-first-content>
                         <ui-icon><i class="fa-solid fa-circle-plus"></i></ui-icon>
                     </ui-item-first-content>

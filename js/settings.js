@@ -6,27 +6,29 @@ const Settings = {
     DEFAULT_ELDER_VICTORY_POINTS: 2,
     DJINN_SHAMHAT_ELDER_VICTORY_POINTS: 4,
     DEFAULT_PALACE_VICTORY_POINTS: 5,
-    ANIMAL_CLASSES: [
-        "fa-dog",
-        "fa-bugs",
-        "fa-cow",
-        "fa-spider",
-        "fa-fish",
-        "fa-horse",
-        "fa-hippo",
-        "fa-crow",
-        "fa-dove",
-        "fa-dragon",
-        "fa-fish-fins",
-        "fa-otter",
-        "fa-frog",
-        "fa-mosquito",
-        "fa-locust",
-        "fa-worm",
-        "fa-cat"
-    ],
+    TILE_VICTORY_POINTS_VALUES: [4, 5, 6, 8, 10, 12, 15],
     getRandomAnimalClass() {
-        const randomAnimalIndex = Math.floor(Math.random() * Settings.ANIMAL_CLASSES.length);
-        return Settings.ANIMAL_CLASSES[randomAnimalIndex];
+        const animalClasses = [
+            "fa-dog",
+            "fa-bugs",
+            "fa-cow",
+            "fa-spider",
+            "fa-fish",
+            "fa-horse",
+            "fa-hippo",
+            "fa-crow",
+            "fa-dove",
+            "fa-dragon",
+            "fa-fish-fins",
+            "fa-otter",
+            "fa-frog",
+            "fa-mosquito",
+            "fa-locust",
+            "fa-worm",
+            "fa-cat"
+        ];
+
+        const randomAnimalIndex = Math.floor(Math.random() * animalClasses.length);
+        return animalClasses[randomAnimalIndex];
     }
 }

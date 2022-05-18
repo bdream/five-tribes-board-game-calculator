@@ -3,6 +3,7 @@ const { createApp } = Vue
 const app = createApp({
     data() {
         return {
+            settings: Settings,
             goldCoinsCount: 0,
             goldCoinsScore: 0,
             viziersCount: 0,
