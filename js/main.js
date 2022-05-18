@@ -12,6 +12,7 @@ const app = createApp({
             eldersCount: 0,
             elderVPs: Settings.DEFAULT_ELDER_VICTORY_POINTS,
             eldersScore: 0,
+            selectedDjinns: [],
             djinniesScore: 0,
             palmTreesCount: 0,
             palmTreeVPs: Settings.DEFAULT_PALM_TREE_VICTORY_POINTS,
@@ -26,7 +27,6 @@ const app = createApp({
             merchandiseCardSuits: [],
             merchandiseCardSuitsScore: 0,
             totalScore: 0,
-            selectedDjinns: []
         }
     },
     methods: {
