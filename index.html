@@ -12,165 +12,173 @@
 </head>
 <body>
 <div id="app">
-    <h4 :class="$tt('headline4')">Five Tribes: The Djinns Of Naqala</h4>
-    <h6 :class="$tt('headline6')">Board Game Score Calculator</h6>
-    <div class="scoreBlock">
-        <div :class="$tt('subtitle1')">
-            <i class="fas fa-coins"></i> Gold Coins Score ({{ goldCoinsScore }})
-        </div>
-        <ui-textfield
-                input-type="number"
-                v-model="goldCoinsCount"
-                @input="scoreTotal"
-        >
-            Gold Coins amount
-        </ui-textfield>
-    </div>
-    <div class="scoreBlock">
-        <div :class="$tt('subtitle1')">
-            <i class="fa-solid fa-person-military-pointing"></i> Viziers Score ({{ viziersScore }})
-        </div>
-        <ui-badge state="info">
-            <ui-textfield
-                    input-type="number"
-                    v-model="viziersCount"
-                    @input="scoreTotal"
-            >
-                Number of yellow meeples
-            </ui-textfield>
-            <template #badge>
-                <i class="fa-solid fa-xmark"></i> {{ vizierVPs }}
-            </template>
-        </ui-badge>
-    </div>
-    <div class="scoreBlock">
-        <div :class="$tt('subtitle1')">
-            <i class="fa-solid fa-hat-wizard"></i> Elders Score ({{ eldersScore }})
-        </div>
-        <ui-badge state="info">
-            <ui-textfield
-                    input-type="number"
-                    v-model="eldersCount"
-                    @input="scoreTotal"
-            >
-                Number of white meeples
-            </ui-textfield>
-            <template #badge>
-                <i class="fa-solid fa-xmark"></i> {{ elderVPs }}
-            </template>
-        </ui-badge>
-    </div>
-    <div class="scoreBlock">
-        <div :class="$tt('subtitle1')">
-            <i class="fas fa-oil-can"></i> Djinns Score ({{ djinniesScore }})
-        </div>
+    <h4 :class="$tt('headline4')" class="scoreBlock">Five Tribes: The Djinns Of Naqala</h4>
+    <h5 :class="$tt('headline5')" class="scoreBlock">Board Game Score Calculator</h5>
+    <div v-for="player in players">
+        <h6 :class="$tt('headline6')" class="scoreBlock">Player {{ player.id }} Total Score: {{ player.totalScore }}</h6>
         <ui-collapse>
             <template #toggle>
-                <ui-button><i class="fa-solid fa-hand-pointer"></i> Select Djinns</ui-button>
+                <ui-button><i class="fa-solid fa-hand-pointer"></i> Set Player Results</ui-button>
             </template>
-            <ui-tree
-                    v-model="selectedDjinns"
-                    :data="settings.DJINN_TREE_DATA"
-                    :data-format="settings.DJINN_TREE_DATA_FORMAT"
-                    :max-level="1"
-                    multiple
-                    @click="scoreTotal"
-            >
-            </ui-tree>
-        </ui-collapse>
-    </div>
-    <div class="scoreBlock">
-        <div :class="$tt('subtitle1')">
-            <i class="fa-solid fa-tree"></i> Palm Trees Score ({{ palmTreesScore }})
-        </div>
-        <ui-badge state="info">
-            <ui-textfield
-                    input-type="number"
-                    v-model="palmTreesCount"
-                    @input="scoreTotal"
-            >
-                Number of palm trees
-            </ui-textfield>
-            <template #badge>
-                <i class="fa-solid fa-xmark"></i> {{ palmTreeVPs }}
-            </template>
-        </ui-badge>
-    </div>
-    <div class="scoreBlock">
-        <div :class="$tt('subtitle1')">
-            <i class="fa-brands fa-fort-awesome"></i> Palaces Score ({{ palacesScore }})
-        </div>
-        <ui-badge state="info">
-            <ui-textfield
-                    input-type="number"
-                    v-model="palacesCount"
-                    @input="scoreTotal"
-            >
-                Number of palaces
-            </ui-textfield>
-            <template #badge>
-                <i class="fa-solid fa-xmark"></i> {{ palaceVPs }}
-            </template>
-        </ui-badge>
-    </div>
-    <div class="scoreBlock">
-        <div :class="$tt('subtitle1')">
-            <i class="fa-solid fa-horse-head"></i> Player Tiles Score ({{ playerTilesScore }})
-        </div>
-        <ui-collapse>
-            <template #toggle>
-                <ui-button><i class="fa-solid fa-hand-pointer"></i> Select Player Tiles</ui-button>
-            </template>
-            <ui-chips id="input-player-tile-chip-set" type="input" :items="playerTiles">
-                <ui-chip
-                        v-for="item in playerTiles"
-                        :key="item.id"
-                        deletable
-                        @remove="removePlayerTileById(item.id)"
+            <div class="scoreBlock">
+                <div :class="$tt('subtitle1')">
+                    <i class="fas fa-coins"></i> Gold Coins Score ({{ player.goldCoinsScore }})
+                </div>
+                <ui-textfield
+                        input-type="number"
+                        v-model="player.goldCoinsCount"
+                        @input="scoreTotal(player)"
                 >
-                    <i class="fa-solid" :class="item.tileClass"></i> {{ item.tileVPs }}
-                </ui-chip>
-            </ui-chips>
-            <ui-list>
-                <ui-item v-for="tileVPs in settings.TILE_VICTORY_POINTS_VALUES" @click="addPlayerTile(tileVPs)">
-                    <ui-item-first-content>
-                        <ui-icon><i class="fa-solid fa-circle-plus"></i></ui-icon>
-                    </ui-item-first-content>
-                    <ui-item-text-content>Add {{ tileVPs }} VPs tile</ui-item-text-content>
-                </ui-item>
-            </ui-list>
+                    Gold Coins amount
+                </ui-textfield>
+            </div>
+            <div class="scoreBlock">
+                <div :class="$tt('subtitle1')">
+                    <i class="fa-solid fa-person-military-pointing"></i> Viziers Score ({{ player.viziersScore }})
+                </div>
+                <ui-badge state="info">
+                    <ui-textfield
+                            input-type="number"
+                            v-model="player.viziersCount"
+                            @input="scoreTotal(player)"
+                    >
+                        Number of yellow meeples
+                    </ui-textfield>
+                    <template #badge>
+                        <i class="fa-solid fa-xmark"></i> {{ player.vizierVPs }}
+                    </template>
+                </ui-badge>
+            </div>
+            <div class="scoreBlock">
+                <div :class="$tt('subtitle1')">
+                    <i class="fa-solid fa-hat-wizard"></i> Elders Score ({{ player.eldersScore }})
+                </div>
+                <ui-badge state="info">
+                    <ui-textfield
+                            input-type="number"
+                            v-model="player.eldersCount"
+                            @input="scoreTotal(player)"
+                    >
+                        Number of white meeples
+                    </ui-textfield>
+                    <template #badge>
+                        <i class="fa-solid fa-xmark"></i> {{ player.elderVPs }}
+                    </template>
+                </ui-badge>
+            </div>
+            <div class="scoreBlock">
+                <div :class="$tt('subtitle1')">
+                    <i class="fas fa-oil-can"></i> Djinns Score ({{ player.djinniesScore }})
+                </div>
+                <ui-collapse>
+                    <template #toggle>
+                        <ui-button><i class="fa-solid fa-hand-pointer"></i> Select Djinns</ui-button>
+                    </template>
+                    <ui-tree
+                            v-model="player.selectedDjinns"
+                            :data="settings.DJINN_TREE_DATA"
+                            :data-format="settings.DJINN_TREE_DATA_FORMAT"
+                            :max-level="1"
+                            multiple
+                            @click="scoreTotal(player)"
+                    >
+                    </ui-tree>
+                </ui-collapse>
+            </div>
+            <div class="scoreBlock">
+                <div :class="$tt('subtitle1')">
+                    <i class="fa-solid fa-tree"></i> Palm Trees Score ({{ player.palmTreesScore }})
+                </div>
+                <ui-badge state="info">
+                    <ui-textfield
+                            input-type="number"
+                            v-model="player.palmTreesCount"
+                            @input="scoreTotal(player)"
+                    >
+                        Number of palm trees
+                    </ui-textfield>
+                    <template #badge>
+                        <i class="fa-solid fa-xmark"></i> {{ player.palmTreeVPs }}
+                    </template>
+                </ui-badge>
+            </div>
+            <div class="scoreBlock">
+                <div :class="$tt('subtitle1')">
+                    <i class="fa-brands fa-fort-awesome"></i> Palaces Score ({{ player.palacesScore }})
+                </div>
+                <ui-badge state="info">
+                    <ui-textfield
+                            input-type="number"
+                            v-model="player.palacesCount"
+                            @input="scoreTotal(player)"
+                    >
+                        Number of palaces
+                    </ui-textfield>
+                    <template #badge>
+                        <i class="fa-solid fa-xmark"></i> {{ player.palaceVPs }}
+                    </template>
+                </ui-badge>
+            </div>
+            <div class="scoreBlock">
+                <div :class="$tt('subtitle1')">
+                    <i class="fa-solid fa-horse-head"></i> Player Tiles Score ({{ player.playerTilesScore }})
+                </div>
+                <ui-collapse>
+                    <template #toggle>
+                        <ui-button><i class="fa-solid fa-hand-pointer"></i> Select Player Tiles</ui-button>
+                    </template>
+                    <ui-chips id="input-player-tile-chip-set" type="input">
+                        <ui-chip
+                                v-for="item in player.playerTiles"
+                                :key="item.id"
+                                deletable
+                                @remove="removePlayerTileById(player, item.id)"
+                        >
+                            <i class="fa-solid" :class="item.tileClass"></i> {{ item.tileVPs }}
+                        </ui-chip>
+                    </ui-chips>
+                    <ui-list>
+                        <ui-item v-for="tileVPs in settings.TILE_VICTORY_POINTS_VALUES" @click="addPlayerTile(player, tileVPs)">
+                            <ui-item-first-content>
+                                <ui-icon><i class="fa-solid fa-circle-plus"></i></ui-icon>
+                            </ui-item-first-content>
+                            <ui-item-text-content>Add {{ tileVPs }} VPs tile</ui-item-text-content>
+                        </ui-item>
+                    </ui-list>
+                </ui-collapse>
+            </div>
+            <div class="scoreBlock">
+                <div :class="$tt('subtitle1')">
+                    <i class="fa-solid fa-store"></i> Merchandise Score ({{ player.merchandiseCardSuitsScore }})
+                </div>
+                <ui-collapse>
+                    <template #toggle>
+                        <ui-button><i class="fa-solid fa-hand-pointer"></i> Select Merchandise card suits</ui-button>
+                    </template>
+                    <ui-chips id="input-merchandise-card-suit-chip-set" type="input">
+                        <ui-chip
+                                v-for="item in player.merchandiseCardSuits"
+                                :key="item.id"
+                                deletable
+                                @remove="removeMerchandiseCardSuitById(player, item.id)"
+                        >
+                            <i class="fa-solid fa-layer-group"></i> {{ item.size }} card suit - {{ item.victoryPoints }} VPs
+                        </ui-chip>
+                    </ui-chips>
+                    <ui-list>
+                        <ui-item v-for="suitSize in 9" @click="addMerchandiseCardSuit(player, suitSize)">
+                            <ui-item-first-content>
+                                <ui-icon><i class="fa-solid fa-circle-plus"></i></ui-icon>
+                            </ui-item-first-content>
+                            <ui-item-text-content>Add {{ suitSize }} card suit</ui-item-text-content>
+                        </ui-item>
+                    </ui-list>
+                </ui-collapse>
+            </div>
         </ui-collapse>
     </div>
     <div class="scoreBlock">
-        <div :class="$tt('subtitle1')">
-            <i class="fa-solid fa-store"></i> Merchandise Score ({{ merchandiseCardSuitsScore }})
-        </div>
-        <ui-collapse>
-            <template #toggle>
-                <ui-button><i class="fa-solid fa-hand-pointer"></i> Select Merchandise card suits</ui-button>
-            </template>
-            <ui-chips id="input-merchandise-card-suit-chip-set" type="input" :items="merchandiseCardSuits">
-                <ui-chip
-                        v-for="item in merchandiseCardSuits"
-                        :key="item.id"
-                        deletable
-                        @remove="removeMerchandiseCardSuitById(item.id)"
-                >
-                    <i class="fa-solid fa-layer-group"></i> {{ item.size }} card suit - {{ item.victoryPoints }} VPs
-                </ui-chip>
-            </ui-chips>
-            <ui-list>
-                <ui-item v-for="suitSize in 9" @click="addMerchandiseCardSuit(suitSize)">
-                    <ui-item-first-content>
-                        <ui-icon><i class="fa-solid fa-circle-plus"></i></ui-icon>
-                    </ui-item-first-content>
-                    <ui-item-text-content>Add {{ suitSize }} card suit</ui-item-text-content>
-                </ui-item>
-            </ui-list>
-        </ui-collapse>
-    </div>
-    <div class="scoreBlock">
-        <h5 :class="$tt('headline5')">Total Score: {{ totalScore }}</h5>
+        <h5 v-for="player in players" :class="$tt('headline5')" class="scoreBlock">Player {{ player.id }} Total Score: {{ player.totalScore }}</h5>
     </div>
 </div>
 <script src="https://unpkg.com/vue@3"></script>
