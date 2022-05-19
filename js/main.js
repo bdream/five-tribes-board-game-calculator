@@ -1,47 +1,48 @@
 const { createApp } = Vue
 
+function getNewPlayerSettings(playerId) {
+    let player = {
+        id: playerId,
+        goldCoinsCount: 0,
+        goldCoinsScore: 0,
+        viziersCount: 0,
+        vizierVPs: Settings.DEFAULT_VIZIER_VICTORY_POINTS,
+        viziersScore: 0,
+        eldersCount: 0,
+        elderVPs: Settings.DEFAULT_ELDER_VICTORY_POINTS,
+        eldersScore: 0,
+        selectedDjinns: [],
+        djinniesScore: 0,
+        palmTreesCount: 0,
+        palmTreeVPs: Settings.DEFAULT_PALM_TREE_VICTORY_POINTS,
+        palmTreesScore: 0,
+        palacesCount: 0,
+        palaceVPs: Settings.DEFAULT_PALACE_VICTORY_POINTS,
+        palacesScore: 0,
+        lastPlayerTileId: 0,
+        playerTiles: [],
+        playerTilesScore: 0,
+        lastMerchandiseCardSuitId: 1,
+        merchandiseCardSuits: [],
+        merchandiseCardSuitsScore: 0,
+        totalScore: 0,
+    };
+
+    return player;
+};
+
 const app = createApp({
     data() {
         return {
             settings: Settings,
             lastPlayerId: 0,
             players: [
-                this.getNewPlayerSettings(1),
-                this.getNewPlayerSettings(2)
+                getNewPlayerSettings(1),
+                getNewPlayerSettings(2)
             ]
         }
     },
     methods: {
-        getNewPlayerSettings(playerId) {
-            let player = {
-                id: playerId,
-                goldCoinsCount: 0,
-                goldCoinsScore: 0,
-                viziersCount: 0,
-                vizierVPs: Settings.DEFAULT_VIZIER_VICTORY_POINTS,
-                viziersScore: 0,
-                eldersCount: 0,
-                elderVPs: Settings.DEFAULT_ELDER_VICTORY_POINTS,
-                eldersScore: 0,
-                selectedDjinns: [],
-                djinniesScore: 0,
-                palmTreesCount: 0,
-                palmTreeVPs: Settings.DEFAULT_PALM_TREE_VICTORY_POINTS,
-                palmTreesScore: 0,
-                palacesCount: 0,
-                palaceVPs: Settings.DEFAULT_PALACE_VICTORY_POINTS,
-                palacesScore: 0,
-                lastPlayerTileId: 0,
-                playerTiles: [],
-                playerTilesScore: 0,
-                lastMerchandiseCardSuitId: 1,
-                merchandiseCardSuits: [],
-                merchandiseCardSuitsScore: 0,
-                totalScore: 0,
-            };
-
-            return player;
-        },
         addMerchandiseCardSuit(player, cardsCount) {
             player.lastMerchandiseCardSuitId++;
 
