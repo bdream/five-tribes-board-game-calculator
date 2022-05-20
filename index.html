@@ -8,15 +8,18 @@
         .scoreBlock {
             margin: 15px;
         }
+        .playerScoreSection {
+            background-color: lightsteelblue;
+        }
     </style>
 </head>
 <body>
 <div id="app" class="scoreBlock">
     <h4 :class="$tt('headline4')">Five Tribes: The Djinns Of Naqala</h4>
     <h5 :class="$tt('headline5')">Board Game Score Calculator</h5>
-    <div v-for="player in players">
+    <div v-for="player in players" v-shape="'10px'" class="playerScoreSection">
         <h6 :class="$tt('headline6')" class="scoreBlock">Player {{ player.id }} Total Score: {{ player.totalScore }}</h6>
-        <ui-collapse>
+        <ui-collapse class="scoreBlock">
             <template #toggle>
                 <ui-button><i class="fa-solid fa-hand-pointer"></i> Set Player Results</ui-button>
             </template>
