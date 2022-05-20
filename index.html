@@ -21,7 +21,7 @@
         <h6 :class="$tt('headline6')" class="scoreBlock">Player {{ player.id }} Total Score: {{ player.totalScore }}</h6>
         <ui-collapse class="scoreBlock">
             <template #toggle>
-                <ui-button><i class="fa-solid fa-hand-pointer"></i> Set Player Results</ui-button>
+                <ui-button raised><i class="fa-solid fa-hand-pointer"></i> Set Player Results</ui-button>
             </template>
             <div class="scoreBlock">
                 <div :class="$tt('subtitle1')">
@@ -75,7 +75,7 @@
                 </div>
                 <ui-collapse>
                     <template #toggle>
-                        <ui-button><i class="fa-solid fa-hand-pointer"></i> Select Djinns</ui-button>
+                        <ui-button outlined><i class="fa-solid fa-hand-pointer"></i> Select Djinns</ui-button>
                     </template>
                     <ui-tree
                             v-model="player.selectedDjinns"
@@ -128,7 +128,7 @@
                 </div>
                 <ui-collapse>
                     <template #toggle>
-                        <ui-button><i class="fa-solid fa-hand-pointer"></i> Select Player Tiles</ui-button>
+                        <ui-button outlined><i class="fa-solid fa-hand-pointer"></i> Select Player Tiles</ui-button>
                     </template>
                     <ui-chips id="input-player-tile-chip-set" type="input">
                         <ui-chip
@@ -156,7 +156,7 @@
                 </div>
                 <ui-collapse>
                     <template #toggle>
-                        <ui-button><i class="fa-solid fa-hand-pointer"></i> Select Merchandise card suits</ui-button>
+                        <ui-button outlined><i class="fa-solid fa-hand-pointer"></i> Select Merchandise card suits</ui-button>
                     </template>
                     <ui-chips id="input-merchandise-card-suit-chip-set" type="input">
                         <ui-chip
