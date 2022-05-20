@@ -109,8 +109,13 @@ const app = createApp({
         scorePalmTrees(player) {
             player.palmTreesScore = player.palmTreesCount * player.palmTreeVPs;
         },
-        scoreViziers(player) {
-            player.viziersScore = player.viziersCount * player.vizierVPs;
+        scoreViziers() {
+            this.players.forEach(currentPlayer => {
+                let playersWithLessViziersThanCurrentPlayer = this.players.filter(p => parseInt(p.viziersCount) < parseInt(currentPlayer.viziersCount));
+                let playersCount = playersWithLessViziersThanCurrentPlayer.length;
+                let additionalViziersVictoryPoints = playersCount * Settings.PLAYER_HAS_MORE_VIZIERS_THAN_OTHER_PLAYER_VICTORY_POINTS;
+                currentPlayer.viziersScore = currentPlayer.viziersCount * currentPlayer.vizierVPs + additionalViziersVictoryPoints;
+            });
         },
         scoreDjinns(player) {
             player.palmTreeVPs = Settings.DEFAULT_PALM_TREE_VICTORY_POINTS;
@@ -141,20 +146,22 @@ const app = createApp({
             this.scoreGoldCoins(player);
             this.scoreDjinns(player);
             this.scorePalmTrees(player);
-            this.scoreViziers(player);
+            this.scoreViziers();
             this.scoreElders(player);
             this.scorePalaces(player);
             this.scorePlayerTiles(player);
             this.scoreMerchandiseCardSuits(player);
 
-            player.totalScore = parseInt(player.goldCoinsScore)
-                + parseInt(player.viziersScore)
-                + parseInt(player.eldersScore)
-                + parseInt(player.djinniesScore)
-                + parseInt(player.palmTreesScore)
-                + parseInt(player.palacesScore)
-                + parseInt(player.playerTilesScore)
-                + parseInt(player.merchandiseCardSuitsScore);
+            this.players.forEach(p => {
+                p.totalScore = parseInt(p.goldCoinsScore)
+                    + parseInt(p.viziersScore)
+                    + parseInt(p.eldersScore)
+                    + parseInt(p.djinniesScore)
+                    + parseInt(p.palmTreesScore)
+                    + parseInt(p.palacesScore)
+                    + parseInt(p.playerTilesScore)
+                    + parseInt(p.merchandiseCardSuitsScore);
+            });
         }
     }
 })
