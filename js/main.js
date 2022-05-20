@@ -1,5 +1,7 @@
 const { createApp } = Vue
 
+const initialPlayerId = 1;
+
 function getNewPlayerSettings(playerId) {
     let player = {
         id: playerId,
@@ -35,14 +37,45 @@ const app = createApp({
     data() {
         return {
             settings: Settings,
-            lastPlayerId: 0,
+            lastPlayerId: initialPlayerId,
             players: [
-                getNewPlayerSettings(1),
-                getNewPlayerSettings(2)
+                getNewPlayerSettings(initialPlayerId)
             ]
-        }
+        };
     },
     methods: {
+        getPlayerName(playerId) {
+            let playerName;
+            switch (playerId) {
+                case 1:
+                    playerName = "One";
+                    break;
+                case 2:
+                    playerName = "Two";
+                    break;
+                case 3:
+                    playerName = "Three";
+                    break;
+                case 4:
+                    playerName = "Four";
+                    break;
+                default:
+                    playerName = "Undefined";
+                    break;
+            }
+
+            return playerName;
+        },
+        addPlayer() {
+            if (this.lastPlayerId < 4) {
+                this.lastPlayerId++;
+
+                let player = getNewPlayerSettings(this.lastPlayerId);
+                this.players.push(player);
+
+                this.scoreTotal(player);
+            }
+        },
         addMerchandiseCardSuit(player, cardsCount) {
             player.lastMerchandiseCardSuitId++;
 
@@ -144,10 +177,10 @@ const app = createApp({
         },
         scoreTotal(player) {
             this.scoreGoldCoins(player);
-            this.scoreDjinns(player);
-            this.scorePalmTrees(player);
             this.scoreViziers();
             this.scoreElders(player);
+            this.scoreDjinns(player);
+            this.scorePalmTrees(player);
             this.scorePalaces(player);
             this.scorePlayerTiles(player);
             this.scoreMerchandiseCardSuits(player);

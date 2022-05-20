@@ -74,5 +74,5 @@ const Settings = {
         };
 
         return merchandiseCardSuitVictoryPoints[cardsCount];
-    },
+    }
 }
