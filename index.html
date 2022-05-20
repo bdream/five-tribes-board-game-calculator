@@ -11,9 +11,9 @@
     </style>
 </head>
 <body>
-<div id="app">
-    <h4 :class="$tt('headline4')" class="scoreBlock">Five Tribes: The Djinns Of Naqala</h4>
-    <h5 :class="$tt('headline5')" class="scoreBlock">Board Game Score Calculator</h5>
+<div id="app" class="scoreBlock">
+    <h4 :class="$tt('headline4')">Five Tribes: The Djinns Of Naqala</h4>
+    <h5 :class="$tt('headline5')">Board Game Score Calculator</h5>
     <div v-for="player in players">
         <h6 :class="$tt('headline6')" class="scoreBlock">Player {{ player.id }} Total Score: {{ player.totalScore }}</h6>
         <ui-collapse>
