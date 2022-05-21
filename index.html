@@ -44,7 +44,7 @@
                 <div :class="$tt('subtitle1')">
                     <i class="fa-solid fa-person-military-pointing"></i> Viziers Score ({{ player.viziersScore }})
                 </div>
-                <ui-badge state="info">
+                <ui-badge :state="player.vizierVPs === settings.DEFAULT_VIZIER_VICTORY_POINTS ? 'info' : 'success'">
                     <ui-textfield
                             input-type="number"
                             v-model="player.viziersCount"
@@ -61,7 +61,7 @@
                 <div :class="$tt('subtitle1')">
                     <i class="fa-solid fa-hat-wizard"></i> Elders Score ({{ player.eldersScore }})
                 </div>
-                <ui-badge state="info">
+                <ui-badge :state="player.elderVPs === settings.DEFAULT_ELDER_VICTORY_POINTS ? 'info' : 'success'">
                     <ui-textfield
                             input-type="number"
                             v-model="player.eldersCount"
@@ -97,7 +97,7 @@
                 <div :class="$tt('subtitle1')">
                     <i class="fa-solid fa-tree"></i> Palm Trees Score ({{ player.palmTreesScore }})
                 </div>
-                <ui-badge state="info">
+                <ui-badge :state="player.palmTreeVPs === settings.DEFAULT_PALM_TREE_VICTORY_POINTS ? 'info' : 'success'">
                     <ui-textfield
                             input-type="number"
                             v-model="player.palmTreesCount"
