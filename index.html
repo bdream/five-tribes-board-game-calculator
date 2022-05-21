@@ -16,7 +16,12 @@
 <body>
 <div id="app" class="scoreBlock">
     <h4 :class="$tt('headline4')">Five Tribes: The Djinns Of Naqala</h4>
-    <h5 :class="$tt('headline5')">Board Game Score Calculator</h5>
+    <h5 :class="$tt('headline5')">
+        Board Game Score Calculator
+        <a v-button href="https://github.com/bdream/five-tribes-board-game-calculator">
+            <i class="fa-brands fa-github"></i> https://github.com/bdream/five-tribes-board-game-calculator
+        </a>
+    </h5>
     <div v-for="player in players" v-shape="'10px'" class="playerScoreSection">
         <h6 :class="$tt('headline6')" class="scoreBlock">Player {{ getPlayerName(player.id) }} ({{ player.totalScore }})</h6>
         <ui-collapse class="scoreBlock">
