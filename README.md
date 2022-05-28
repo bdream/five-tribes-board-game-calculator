@@ -1,5 +1,7 @@
-# five-tribes-board-game-calculator
-The Five Tribes: The Jinns Of Naqala board game final score calculator.
+# The Five Tribes: The Jinns Of Naqala board game final score calculator
+
+https://bdream.github.io/five-tribes-board-game-calculator/
+
 
 Used resources:
 
