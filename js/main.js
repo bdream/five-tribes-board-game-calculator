@@ -53,7 +53,10 @@ const app = createApp({
             this.locale = locale;
             this.messages = getLocaleMessages(this.locale);
         },
-        getPlayerName(playerId) {
+        getAddVPTileNameLabel(tileVPs) {
+            return this.messages.addVPsTile.replace("{0}", tileVPs);
+        },
+        getPlayerNameLabel(playerId) {
             let playerName;
             switch (playerId) {
                 case 1:
