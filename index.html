@@ -20,9 +20,9 @@
     <h4 :class="$tt('headline4')">{{ messages.title }}</h4>
     <h5 :class="$tt('headline5')">
         {{ messages.subtitle }}
-        <ui-button href="https://github.com/bdream/five-tribes-board-game-calculator">
+        <a v-button href="https://github.com/bdream/five-tribes-board-game-calculator">
             <i class="fa-brands fa-github"></i> {{ messages.sourceCode }}
-        </ui-button>
+        </a>
     </h5>
     <div v-for="player in players" v-shape="'10px'" class="playerScoreSection">
         <h6 :class="$tt('headline6')" class="scoreBlock">{{ getPlayerName(player.id) }} ({{ player.totalScore }})</h6>
