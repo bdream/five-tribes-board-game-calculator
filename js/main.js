@@ -1,5 +1,7 @@
 const { createApp } = Vue
 
+const defaultLocale = "en";
+
 const initialPlayerId = 1;
 
 function getNewPlayerSettings(playerId) {
@@ -40,24 +42,31 @@ const app = createApp({
             lastPlayerId: initialPlayerId,
             players: [
                 getNewPlayerSettings(initialPlayerId)
-            ]
+            ],
+            locales: ["en", "ru"],
+            locale: defaultLocale,
+            messages: getLocaleMessages(defaultLocale)
         };
     },
     methods: {
+        setLocale(locale) {
+            this.locale = locale;
+            this.messages = getLocaleMessages(this.locale);
+        },
         getPlayerName(playerId) {
             let playerName;
             switch (playerId) {
                 case 1:
-                    playerName = "One";
+                    playerName = this.messages.player.one;
                     break;
                 case 2:
-                    playerName = "Two";
+                    playerName = this.messages.player.two;
                     break;
                 case 3:
-                    playerName = "Three";
+                    playerName = this.messages.player.three;
                     break;
                 case 4:
-                    playerName = "Four";
+                    playerName = this.messages.player.four;
                     break;
                 default:
                     playerName = "Undefined";

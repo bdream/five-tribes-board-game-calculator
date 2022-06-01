@@ -16,34 +16,35 @@
 </head>
 <body>
 <div id="app" class="scoreBlock">
-    <h4 :class="$tt('headline4')">Five Tribes: The Djinns Of Naqala</h4>
+    <ui-button outlined @click="setLocale('en')">EN</ui-button><ui-button outlined @click="setLocale('ru')">RU</ui-button>
+    <h4 :class="$tt('headline4')">{{ messages.title }}</h4>
     <h5 :class="$tt('headline5')">
-        Board Game Score Calculator
-        <a v-button href="https://github.com/bdream/five-tribes-board-game-calculator">
-            <i class="fa-brands fa-github"></i> Source Code
-        </a>
+        {{ messages.subtitle }}
+        <ui-button href="https://github.com/bdream/five-tribes-board-game-calculator">
+            <i class="fa-brands fa-github"></i> {{ messages.sourceCode }}
+        </ui-button>
     </h5>
     <div v-for="player in players" v-shape="'10px'" class="playerScoreSection">
-        <h6 :class="$tt('headline6')" class="scoreBlock">Player {{ getPlayerName(player.id) }} ({{ player.totalScore }})</h6>
+        <h6 :class="$tt('headline6')" class="scoreBlock">{{ getPlayerName(player.id) }} ({{ player.totalScore }})</h6>
         <ui-collapse class="scoreBlock">
             <template #toggle>
-                <ui-button raised><i class="fa-solid fa-hand-pointer"></i> Set Player Results</ui-button>
+                <ui-button raised><i class="fa-solid fa-hand-pointer"></i> {{ messages.setPlayerResults }}</ui-button>
             </template>
             <div class="scoreBlock">
                 <div :class="$tt('subtitle1')">
-                    <i class="fas fa-coins"></i> Gold Coins Score ({{ player.goldCoinsScore }})
+                    <i class="fas fa-coins"></i> {{ messages.goldCoinsScore }} ({{ player.goldCoinsScore }})
                 </div>
                 <ui-textfield
                         input-type="number"
                         v-model="player.goldCoinsCount"
                         @input="scoreTotal(player)"
                 >
-                    Gold Coins amount
+                    {{ messages.goldCoinsAmount }}
                 </ui-textfield>
             </div>
             <div class="scoreBlock">
                 <div :class="$tt('subtitle1')">
-                    <i class="fa-solid fa-person-military-pointing"></i> Viziers Score ({{ player.viziersScore }})
+                    <i class="fa-solid fa-person-military-pointing"></i> {{ messages.viziersScore }} ({{ player.viziersScore }})
                 </div>
                 <ui-badge :state="player.vizierVPs === settings.DEFAULT_VIZIER_VICTORY_POINTS ? 'info' : 'success'">
                     <ui-textfield
@@ -51,7 +52,7 @@
                             v-model="player.viziersCount"
                             @input="scoreTotal(player)"
                     >
-                        Number of yellow meeples
+                        {{ messages.yellowMeeplesNumber }}
                     </ui-textfield>
                     <template #badge>
                         <i class="fa-solid fa-xmark"></i> {{ player.vizierVPs }}
@@ -60,7 +61,7 @@
             </div>
             <div class="scoreBlock">
                 <div :class="$tt('subtitle1')">
-                    <i class="fa-solid fa-hat-wizard"></i> Elders Score ({{ player.eldersScore }})
+                    <i class="fa-solid fa-hat-wizard"></i> {{ messages.eldersScore }} ({{ player.eldersScore }})
                 </div>
                 <ui-badge :state="player.elderVPs === settings.DEFAULT_ELDER_VICTORY_POINTS ? 'info' : 'success'">
                     <ui-textfield
@@ -68,7 +69,7 @@
                             v-model="player.eldersCount"
                             @input="scoreTotal(player)"
                     >
-                        Number of white meeples
+                        {{ messages.whiteMeeplesNumber }}
                     </ui-textfield>
                     <template #badge>
                         <i class="fa-solid fa-xmark"></i> {{ player.elderVPs }}
@@ -77,11 +78,11 @@
             </div>
             <div class="scoreBlock">
                 <div :class="$tt('subtitle1')">
-                    <i class="fas fa-oil-can"></i> Djinns Score ({{ player.djinniesScore }})
+                    <i class="fas fa-oil-can"></i> {{ messages.djinniesScore }} ({{ player.djinniesScore }})
                 </div>
                 <ui-collapse>
                     <template #toggle>
-                        <ui-button outlined><i class="fa-solid fa-hand-pointer"></i> Select Djinns</ui-button>
+                        <ui-button outlined><i class="fa-solid fa-hand-pointer"></i> {{ messages.selectDjinnies }} </ui-button>
                     </template>
                     <ui-tree
                             v-model="player.selectedDjinns"
@@ -96,7 +97,7 @@
             </div>
             <div class="scoreBlock">
                 <div :class="$tt('subtitle1')">
-                    <i class="fa-solid fa-tree"></i> Palm Trees Score ({{ player.palmTreesScore }})
+                    <i class="fa-solid fa-tree"></i> {{ messages.palmTreesScore }} ({{ player.palmTreesScore }})
                 </div>
                 <ui-badge :state="player.palmTreeVPs === settings.DEFAULT_PALM_TREE_VICTORY_POINTS ? 'info' : 'success'">
                     <ui-textfield
@@ -104,7 +105,7 @@
                             v-model="player.palmTreesCount"
                             @input="scoreTotal(player)"
                     >
-                        Number of palm trees
+                        {{ messages.palmTreesNumber }}
                     </ui-textfield>
                     <template #badge>
                         <i class="fa-solid fa-xmark"></i> {{ player.palmTreeVPs }}
@@ -113,7 +114,7 @@
             </div>
             <div class="scoreBlock">
                 <div :class="$tt('subtitle1')">
-                    <i class="fa-brands fa-fort-awesome"></i> Palaces Score ({{ player.palacesScore }})
+                    <i class="fa-brands fa-fort-awesome"></i> {{ messages.palacesScore }} ({{ player.palacesScore }})
                 </div>
                 <ui-badge state="info">
                     <ui-textfield
@@ -121,7 +122,7 @@
                             v-model="player.palacesCount"
                             @input="scoreTotal(player)"
                     >
-                        Number of palaces
+                        {{ messages.palacesCount }}
                     </ui-textfield>
                     <template #badge>
                         <i class="fa-solid fa-xmark"></i> {{ player.palaceVPs }}
@@ -130,11 +131,11 @@
             </div>
             <div class="scoreBlock">
                 <div :class="$tt('subtitle1')">
-                    <i class="fa-solid fa-horse-head"></i> Player Tiles Score ({{ player.playerTilesScore }})
+                    <i class="fa-solid fa-horse-head"></i> {{ messages.playerTilesScore }} ({{ player.playerTilesScore }})
                 </div>
                 <ui-collapse>
                     <template #toggle>
-                        <ui-button outlined><i class="fa-solid fa-hand-pointer"></i> Select Player Tiles</ui-button>
+                        <ui-button outlined><i class="fa-solid fa-hand-pointer"></i> {{ messages.selectPlayerTiles }} </ui-button>
                     </template>
                     <ui-chips id="input-player-tile-chip-set" type="input">
                         <ui-chip
@@ -158,11 +159,11 @@
             </div>
             <div class="scoreBlock">
                 <div :class="$tt('subtitle1')">
-                    <i class="fa-solid fa-store"></i> Merchandise Score ({{ player.merchandiseCardSuitsScore }})
+                    <i class="fa-solid fa-store"></i> {{ messages.merchandiseScore }} ({{ player.merchandiseCardSuitsScore }})
                 </div>
                 <ui-collapse>
                     <template #toggle>
-                        <ui-button outlined><i class="fa-solid fa-hand-pointer"></i> Select Merchandise card suits</ui-button>
+                        <ui-button outlined><i class="fa-solid fa-hand-pointer"></i> {{ messages.selectMerchandiseCardSuits }} </ui-button>
                     </template>
                     <ui-chips id="input-merchandise-card-suit-chip-set" type="input">
                         <ui-chip
@@ -187,17 +188,18 @@
         </ui-collapse>
     </div>
     <div class="scoreBlock">
-        <ui-fab @click="this.addPlayer" extended><i class="fa-solid fa-plus"></i> Add Player</ui-fab>
+        <ui-fab @click="this.addPlayer" extended><i class="fa-solid fa-plus"></i> {{ messages.addPlayer }} </ui-fab>
     </div>
-    <ui-divider>Total Score</ui-divider>
+    <ui-divider>{{ messages.totalScore }}</ui-divider>
     <div class="scoreBlock">
-        <h5 v-for="player in players" :class="$tt('headline5')" class="scoreBlock">Player {{ getPlayerName(player.id) }}: {{ player.totalScore }}</h5>
+        <h5 v-for="player in players" :class="$tt('headline5')" class="scoreBlock">{{ getPlayerName(player.id) }}: {{ player.totalScore }}</h5>
     </div>
 </div>
 <script src="libs/vue@3.2.36/dist/vue.global.prod.js"></script>
 <script src="libs/balm-ui@10.6.0/dist/balm-ui.js"></script>
 <script src="libs/balm-ui@10.6.0/dist/balm-ui-plus.js"></script>
 <script src="js/settings.js"></script>
+<script src="js/localizations.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
