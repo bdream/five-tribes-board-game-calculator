@@ -53,30 +53,13 @@ const app = createApp({
             this.locale = locale;
             this.messages = getLocaleMessages(this.locale);
         },
-        getAddVPTileNameLabel(tileVPs) {
-            return this.messages.addVPsTile.replace("{0}", tileVPs);
-        },
-        getPlayerNameLabel(playerId) {
-            let playerName;
-            switch (playerId) {
-                case 1:
-                    playerName = this.messages.player.one;
-                    break;
-                case 2:
-                    playerName = this.messages.player.two;
-                    break;
-                case 3:
-                    playerName = this.messages.player.three;
-                    break;
-                case 4:
-                    playerName = this.messages.player.four;
-                    break;
-                default:
-                    playerName = "Undefined";
-                    break;
+        getLabel() {
+            let label = arguments[0];
+            for (let i = 1; i < arguments.length; i++) {
+                label = label.replace("{" + i + "}", arguments[i]);
             }
 
-            return playerName;
+            return label;
         },
         addPlayer() {
             if (this.lastPlayerId < 4) {
