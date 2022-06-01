@@ -92,6 +92,7 @@
                             multiple
                             @click="scoreTotal(player)"
                     >
+                        <template #title="{ data }"> {{ getLabel(messages.djinnName[data.key.name], data.key.value) }} </template>
                     </ui-tree>
                 </ui-collapse>
             </div>
