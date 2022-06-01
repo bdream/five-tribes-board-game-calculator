@@ -45,13 +45,13 @@ const app = createApp({
             ],
             locales: ["en", "ru"],
             locale: defaultLocale,
-            messages: getLocaleMessages(defaultLocale)
+            messages: Localization.getLocaleMessages(defaultLocale)
         };
     },
     methods: {
         setLocale(locale) {
             this.locale = locale;
-            this.messages = getLocaleMessages(this.locale);
+            this.messages = Localization.getLocaleMessages(this.locale);
         },
         getLabel() {
             let label = arguments[0];
