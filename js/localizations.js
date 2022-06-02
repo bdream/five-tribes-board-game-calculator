@@ -115,7 +115,7 @@ const Localization = {
             totalScore: 'Итоговый счёт'
         },
         de: {
-            title: 'Die Fünf Stammen: die Dschinn von Naqala',
+            title: 'Five Tribes: die Dschinn von Naqala',
             subtitle: 'Der Brettspiel-Punktzahl-Rechner',
             sourceCode: 'Der Quellcode',
             player: {
