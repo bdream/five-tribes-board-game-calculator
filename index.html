@@ -16,7 +16,7 @@
 </head>
 <body>
 <div id="app" class="scoreBlock">
-    <ui-button outlined @click="setLocale('en')">EN</ui-button><ui-button outlined @click="setLocale('ru')">RU</ui-button>
+    <ui-button v-for="locale in locales" :outlined="selectedLocale === locale" @click="setLocale(locale)">{{ locale }}</ui-button>
     <h4 :class="$tt('headline4')">{{ messages.title }}</h4>
     <h5 :class="$tt('headline5')">
         {{ messages.subtitle }}

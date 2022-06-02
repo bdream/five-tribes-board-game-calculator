@@ -43,15 +43,15 @@ const app = createApp({
             players: [
                 getNewPlayerSettings(initialPlayerId)
             ],
-            locales: ["en", "ru"],
-            locale: defaultLocale,
+            locales: ["en", "ru", "de"],
+            selectedLocale: defaultLocale,
             messages: Localization.getLocaleMessages(defaultLocale)
         };
     },
     methods: {
         setLocale(locale) {
-            this.locale = locale;
-            this.messages = Localization.getLocaleMessages(this.locale);
+            this.selectedLocale = locale;
+            this.messages = Localization.getLocaleMessages(this.selectedLocale);
         },
         getLabel() {
             let label = arguments[0];
