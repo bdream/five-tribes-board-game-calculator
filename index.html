@@ -200,12 +200,12 @@
         <h5 v-for="player in players" :class="$tt('headline5')" class="scoreBlock">{{ getLabel(messages.player[player.id]) }}: {{ player.totalScore }}</h5>
     </div>
     <div style="left: 0;" >
-        <ui-button v-button href="https://github.com/bdream">
+        <a v-button href="https://github.com/bdream">
             <i class="fa-solid fa-laptop-code"></i> {{ messages.developer }} Dmitry Belov
-        </ui-button>
-        <ui-button v-button href="https://vk.com/elena_petrova15">
+        </a>
+        <a v-button href="https://vk.com/elena_petrova15">
             <i class="fa-solid fa-language"></i> {{ messages.localizer }} Eleva Petrova
-        </ui-button>
+        </a>
     </div>
 </div>
 <script src="libs/vue@3.2.36/dist/vue.global.prod.js"></script>
