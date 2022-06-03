@@ -48,10 +48,19 @@ const app = createApp({
             messages: Localization.getLocaleMessages(defaultLocale)
         };
     },
+    mounted() {
+        if (localStorage.selectedLocale) {
+            this.setLocale(localStorage.selectedLocale)
+        } else {
+            this.setLocale(defaultLocale)
+        }
+    },
     methods: {
         setLocale(locale) {
             this.selectedLocale = locale;
             this.messages = Localization.getLocaleMessages(this.selectedLocale);
+
+            localStorage.selectedLocale = this.selectedLocale;
         },
         getLabel() {
             let label = arguments[0];
