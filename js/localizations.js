@@ -55,7 +55,9 @@ const Localization = {
             addMerchandiseCardSuit: 'Add {1} card suit',
             merchandiseCardSuit: '{1} card suit - {2} VPs',
             addPlayer: 'Add player',
-            totalScore: 'Total Score'
+            totalScore: 'Total Score',
+            developer: 'Developer:',
+            localizer: 'Localizer:'
         },
         ru: {
             title: 'Пять племён: Джинны Накалы',
@@ -112,7 +114,9 @@ const Localization = {
             addMerchandiseCardSuit: 'Сет из {1} товаров',
             merchandiseCardSuit: 'Сет из {1} товаров - {2} ПО',
             addPlayer: 'Добавить игрока',
-            totalScore: 'Итоговый счёт'
+            totalScore: 'Итоговый счёт',
+            developer: 'Разработчик:',
+            localizer: 'Переводчик:'
         },
         de: {
             title: 'Five Tribes: die Dschinn von Naqala',
@@ -169,7 +173,9 @@ const Localization = {
             addMerchandiseCardSuit: 'Hinzufügen {1} Karteneinheiten',
             merchandiseCardSuit: '{1} Karteneinheit - {2} SP',
             addPlayer: 'Hinzufügen den Spieler',
-            totalScore: 'Das Gesamtergebnis'
+            totalScore: 'Das Gesamtergebnis',
+            developer: 'Programmierer:',
+            localizer: 'Lokalisierer:'
         }
     },
     getLocaleMessages(locale) {
